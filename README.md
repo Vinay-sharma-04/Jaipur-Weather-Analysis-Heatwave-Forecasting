@@ -1,136 +1,58 @@
-# 🌡️ Heatwave Prediction and Temperature Forecasting
+# Jaipur Weather Analysis & Heatwave Forecasting
 
-## 📌 Overview
-
-This project focuses on analyzing historical weather data and building Machine Learning models for:
-
-* Heatwave Prediction (Classification)
-* Next-Day Temperature Forecasting (Regression)
-
-The project uses historical weather data from the Open-Meteo API and applies different Machine Learning techniques using Python and Scikit-learn.
+A machine learning project to predict heatwave days and forecast next-day maximum temperature using 10 years of historical weather data for Jaipur (2015–2025).
 
 ---
 
-## 🚀 Features
+## Overview
 
-✔️ Data Cleaning and Preprocessing
-✔️ Feature Engineering using Lag Features & Rolling Averages
-✔️ Heatwave Detection and Prediction
-✔️ Next-Day Temperature Forecasting
-✔️ Data Visualization and Trend Analysis
-✔️ Model Training and Evaluation
-✔️ Model Saving using Joblib
+- **Heatwave Classification** — predicts whether a day will be a heatwave (temp_max >= 40°C)
+- **Temperature Regression** — forecasts next-day maximum temperature
+
+Data source: [Open-Meteo API](https://open-meteo.com/)
 
 ---
 
-## 🛠️ Technologies Used
+## Results
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Scikit-learn
-* Joblib
+| Task | Model | Metric | Score |
+|------|-------|--------|-------|
+| Heatwave Classification | Random Forest | ROC-AUC | 0.986 |
+| Heatwave Classification | Random Forest | F1-score | 0.83 |
+| Temperature Forecasting | Linear Regression | R² | 0.946 |
+| Temperature Forecasting | Linear Regression | MAE | 1.03°C |
 
----
-
-## 📂 Dataset
-
-The dataset contains historical weather information such as:
-
-* Maximum Temperature
-* Humidity
-* Wind Speed
-* Precipitation
-* Weather Conditions
-
-### Data Source
-
-Open-Meteo API
+Baseline MAE (mean prediction): 4.69°C
 
 ---
 
-## 🤖 Machine Learning Models
+## Key Techniques
 
-### 🔥 Heatwave Prediction
-
-A heatwave day is defined as:
-
-```python
-Temperature >= 40°C
-```
-
-#### Models Used
-
-* Logistic Regression
-* Random Forest Classifier
-
-#### Evaluation Metrics
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* Confusion Matrix
+- Lag features (1, 2, 3-day) and rolling averages (3-day, 5-day)
+- Cyclical month encoding (sin/cos) to capture seasonality
+- Chronological train/test split to prevent data leakage
+- Class-weight balancing for imbalanced heatwave labels
+- Decision threshold tuning (0.5 → 0.604) to optimize F1-score
+- Seasonal error analysis (month-wise MAE)
 
 ---
 
-### 🌤️ Temperature Forecasting
+## Tech Stack
 
-This project also predicts the next day's maximum temperature.
-
-#### Models Used
-
-* Linear Regression
-* Random Forest Regressor
-
-#### Evaluation Metrics
-
-* MAE
-* RMSE
-* R² Score
+Python, Pandas, NumPy, Scikit-learn, Matplotlib, Joblib
 
 ---
 
-## 📊 Visualizations
-
-The project includes:
-
-* Monthly Heatwave Analysis
-* Yearly Heatwave Trends
-* Feature Importance Graphs
-* Actual vs Predicted Temperature Plot
-* Error Distribution Analysis
+## Files
+Model.ipynb              — main notebook
+open-meteo-...csv        — raw weather dataset
+heatwave_model.pkl       — saved classifier
+temp_model.pkl           — saved regressor
+heatwave_threshold.json  — optimal decision threshold
 
 ---
 
-## 📁 Project Structure
+## Future Scope
 
-```bash
-├── Model(2).ipynb
-├── dataset.csv
-├── heatwave_model.pkl
-├── temperature_model.pkl
-└── README.md
-```
-
----
-
-## 🔄 Workflow
-
-1. Data Collection
-2. Data Cleaning
-3. Feature Engineering
-4. Train-Test Split
-5. Model Training
-6. Model Evaluation
-7. Visualization
-8. Model Saving
-
----
-
-## 🌱 Future Improvements
-
-* Add Deep Learning models like LSTM
-* Deploy using Streamlit or Flask
-* Add Real-Time Weather Forecasting
+- LSTM-based time series model
+- Streamlit dashboard for real-time forecasting
