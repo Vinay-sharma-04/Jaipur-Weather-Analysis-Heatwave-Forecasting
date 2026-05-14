@@ -44,11 +44,12 @@ Python, Pandas, NumPy, Scikit-learn, Matplotlib, Joblib
 ---
 
 ## Files
-Model.ipynb              — main notebook,
-open-meteo-...csv        — raw weather dataset,
-heatwave_model.pkl       — saved classifier,
-temp_model.pkl           — saved regressor,
-heatwave_threshold.json  — optimal decision threshold
+
+- Model.ipynb              — main notebook
+- open-meteo-...csv        — raw weather dataset
+- heatwave_model.pkl       — saved classifier
+- temp_model.pkl           — saved regressor
+- heatwave_threshold.json  — optimal decision threshold
 
 ---
 
